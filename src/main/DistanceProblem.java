@@ -14,11 +14,15 @@ public class DistanceProblem {
     private double msTime, ini, fin;
     
     public static void main(String[] args) {
-        if(args.length == 2){            
-            filePath = args[1];
-        }else{
-            filePath = "./src/main/fichero.txt";
+        switch(args.length){
+            case 1:
+                filePath=args[0];
+                break;
+            default:
+                filePath = "./fichero.txt";
+                break;
         }
+        
         new DistanceProblem().execute();
     }
 
@@ -42,10 +46,18 @@ public class DistanceProblem {
                 }
                 line = bf.readLine();
             }
-        } catch (IOException ex) {
-            System.out.println("File not found");
-            System.exit(-1);
+        }catch(IOException ex){
+            System.err.println("Error al abrir el fichero");
+            System.exit(1);
+        }finally{
+            try {
+                if(bf!= null) bf.close();
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
+                System.exit(1);
+            }
         }
+        
     }
 
     private void process() {
