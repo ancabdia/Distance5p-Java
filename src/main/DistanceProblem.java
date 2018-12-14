@@ -6,31 +6,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DistanceProblem {
     private static String filePath;
     private final Distance distance = new Distance();
     private final List<String> list = new ArrayList<>();
-    private double msTime;
+    private double msTime, ini, fin;
     
     public static void main(String[] args) {
-        
-        filePath = "./src/main/fichero.txt";
-        new DistanceProblem().execute();
-        /*
         if(args.length == 2){            
             filePath = args[1];
-            new DistanceProblem().execute();
         }else{
-            filePath = "./src/fichero.txt";
-        }*/
+            filePath = "./src/main/fichero.txt";
+        }
+        new DistanceProblem().execute();
     }
 
     private void execute() {
+        ini = System.nanoTime();
         input();
         process();
+        
     }
 
     private void input() {
@@ -47,7 +43,7 @@ public class DistanceProblem {
                 line = bf.readLine();
             }
         } catch (IOException ex) {
-            Logger.getLogger(DistanceProblem.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("File not found");
             System.exit(-1);
         }
     }
@@ -65,10 +61,8 @@ public class DistanceProblem {
     }
 
     private void output(String str1, String str2) {
-        double ini = System.currentTimeMillis();
-        distance.edit_distance(str1, str2, str1.length(), str2.length());
-        msTime = (System.currentTimeMillis()-ini)/1000;
-        System.out.println("Time interno: " + distance.getTime());
-        System.out.println("World " + str1 + "-" + str2 + "take " + msTime + "seconds");
+        int res = distance.edit_distance(str1, str2, str1.length(), str2.length());
+        msTime = (System.nanoTime()-ini)/1000000;
+        System.out.println("Palabra [" + str1 + "] [" + str2 + "] se han realizado " + res + " cambios y tiempo " + msTime + " miliseconds");
     }
 }

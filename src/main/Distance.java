@@ -16,7 +16,6 @@ public class Distance {
     private MultiKeyHashMap<String, String, Integer> dp = new MultiKeyHashMap<>();
     
     private int distance(String str1, String str2, int m, int n){
-        long ini = System.currentTimeMillis();
         int result;
         
         if(m == 0){
@@ -41,8 +40,6 @@ public class Distance {
                     distance(str1, str2, m-1, n-1));
             dp.put(str1, str2, result);
         }
-        long fin = System.currentTimeMillis();
-        time = ((fin - ini) /1000);
         return result;
     }
     
