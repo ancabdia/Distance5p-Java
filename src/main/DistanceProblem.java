@@ -27,6 +27,7 @@ public class DistanceProblem {
     }
 
     private void execute() {
+        System.out.println("--Memoization--");
         ini = System.nanoTime();
         input();
         process();
