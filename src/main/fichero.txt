@@ -1,0 +1,7 @@
+saturday;sunday
+metraje;traje
+llamada;monja
+palabra;o
+o;palabra
+palabra;palabra
+mail;post
